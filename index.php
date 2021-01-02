@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="/styles.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -21,11 +21,11 @@
         <div>
             <label for="searchMode" class="mt-2">search by:</label>
             <select name="searchMode" id="searchMode">
-                <option value="/name">Movie Name</option>
-                <option value="/id">Movie ID</option>
-                <option value="/year">Year Shown</option>
-                <option value="/rating/lessorequal">Rating Less than or Equal to</option>
-                <option value="/rating/greaterorequal">Rating Greater than or Equal to</option>
+                <option value="name">Movie Name</option>
+                <option value="id">Movie ID</option>
+                <option value="year">Year Shown</option>
+                <option value="ratinglessorequal">Rating Less than or Equal to</option>
+                <option value="ratinggreaterorequal">Rating Greater than or Equal to</option>
             </select>
         </div>
         <div class="mx-4 d-flex">
@@ -42,32 +42,25 @@
     </ol>
 </body>
 
-<script type="text/javascript" src="/home.js"></script>
+<script type="text/javascript" src="home.js"></script>
 
 </html>
 
 <?php
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "imdb_ijs";
+// include_once("connections/connection.php");
 
-$con = new mysqli($host, $username, $password, $database);
+// $con = connection();
 
-if($con->connect_error){
-    echo $con->connect_error;
-}
+// $strSearch = "star wars";
 
-$strSearch = "star wars";
+// $sql = 'SELECT name FROM movies WHERE name LIKE "%'.$strSearch.'%" LIMIT 20 OFFSET 0';
 
-$sql = 'SELECT name FROM movies WHERE name LIKE "%'.$strSearch.'%" LIMIT 20 OFFSET 0';
+// $result = $con->query($sql) or die ($con->connect_error);
 
-$result = $con->query($sql) or die ($con->connect_error);
-
-echo "<ol>";
-while($row = $result->fetch_assoc()){
-    echo "<li>".$row['name']."</li>";
-};
-echo "</ol>";
+// echo "<ol>";
+// while($row = $result->fetch_assoc()){
+//     echo "<li>".$row['name']."</li>";
+// };
+// echo "</ol>";
 ?>
