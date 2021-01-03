@@ -27,6 +27,7 @@
                 <option value="ratinglessorequal">Rating Less than or Equal to</option>
                 <option value="ratinggreaterorequal">Rating Greater than or Equal to</option>
                 <option value="directorname">Director Name</option>
+                <option value="directorid">Director ID</option>
             </select>
         </div>
         <div class="mx-4 d-flex">

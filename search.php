@@ -26,7 +26,18 @@ switch ($mode) {
         $sql = 'SELECT name FROM movies WHERE movies.rank >= ' . $strSearch . ' LIMIT ' . $pageLimit . ' OFFSET ' . $offset;
         break;
     case "directorname":
-        $sql = "SELECT name FROM movies JOIN movies_directors AS md ON movies.id = md.movie_id JOIN directors ON directors.id = md.director_id WHERE  directors.first_name LIKE '%$strSearch%' ||directors.last_name LIKE '%$strSearch%'" . ' LIMIT ' . $pageLimit . ' OFFSET ' . $offset;
+        $sql = 'SELECT name FROM movies 
+                JOIN movies_directors AS md ON movies.id = md.movie_id 
+                JOIN directors ON directors.id = md.director_id 
+                WHERE directors.first_name LIKE "%'.$strSearch.'%" || directors.last_name LIKE "%' . $strSearch . '%" 
+                LIMIT ' . $pageLimit . ' OFFSET ' . $offset;
+        break;
+    case "directorid":
+        $sql = 'SELECT name FROM movies
+                JOIN movies_directors AS md ON movies.id = md.movie_id
+                JOIN directors ON directors.id = md.director_id
+                WHERE directors.id = ' . $strSearch . '
+                LIMIT ' . $pageLimit . ' OFFSET ' . $offset;
         break;
     default:
         $sql = 'SELECT name FROM movies';
