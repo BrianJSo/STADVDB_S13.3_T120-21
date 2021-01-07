@@ -1,10 +1,10 @@
 <?php
 
     function connection(){
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "imdb_ijs";
+        $host = "sql211.epizy.com";
+        $username = "epiz_27563948";
+        $password = "23O3HbzNQy";
+        $database = "epiz_27563948_imdb_ijs";
 
         $con = new mysqli($host, $username, $password, $database);
 
@@ -14,5 +14,3 @@
             return $con;
         }
     }
-
-?>
