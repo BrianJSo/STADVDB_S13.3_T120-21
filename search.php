@@ -85,6 +85,24 @@ switch ($mode) {
 }
 
 $result = $con->query($sql) or die($con->connect_error);
-while ($row = $result->fetch_assoc()) {
-    echo "<li>" . $row['name'] . "</li>";
+
+$finfo = $result->fetch_fields();
+$numFields = count($finfo);
+
+echo "<tr>";
+echo "<th></th>";
+foreach ($finfo as $val) {
+    echo "<th>" .  $val->name . "</th>";
+}
+echo "</tr>";
+$rowCount = 0;
+while ($row = $result->fetch_array()) {
+    echo "<tr>";
+    $rowCount++;
+    echo "<td>" . $offset+$rowCount . "</td>";
+
+    for($i = 0; $i < $numFields; $i++){
+        echo "<td>" . $row[$i] . "</td>";
+    }
+    echo "</tr>";
 };

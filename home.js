@@ -12,6 +12,8 @@ $(document).ready(function () {
 
   $("#searchMode").change(function () {
     mode = $("#searchMode").val();
+    $("#searchQuery").val("");
+    $("#searchQuery2").val("");
     if (mode == "actorgenre" || mode == "actordirector") {
       $("#searchQuery2").attr("hidden", false);
       if (mode == "actorgenre") {
@@ -74,8 +76,14 @@ $(document).ready(function () {
 
 function search() {
   $("#results").empty();
+  $("#resultsCaption").empty();
   $("#results").attr("start", pageLimit * (pageNum - 1) + 1);
   $("#pageNum").text(pageNum);
+  $("#resultsCaption").append("Loading...");
+
+  strMode = $("#searchMode option:selected").text();
+  curQuery = strSearch;
+  curQuery2 = strSearch2;
 
   $.get(
     "search.php",
@@ -86,6 +94,16 @@ function search() {
       pageNum: pageNum,
     },
     function (data) {
+      $("#results").empty();
+      $("#resultsCaption").empty();
+      $("#resultsCaption").append(
+        "Results of <span class=bold>" +
+          strMode +
+          "</span>: " +
+          curQuery +
+          " " +
+          curQuery2
+      );
       $("#results").append(data);
     }
   );

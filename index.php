@@ -48,8 +48,9 @@
             <a name="nextBtn" id="nextBtn"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
         </div>
     </div>
-    <ol name="results" id="results">
-    </ol>
+    <p name="resultsCaption" id="resultsCaption"></p>
+    <table name="results" id="results">
+    </table>
 </body>
 
 <script type="text/javascript" src="home.js"></script>
