@@ -62,7 +62,8 @@ switch ($mode) {
                 JOIN movies_genres AS mg ON movies.id = mg.movie_id
                 JOIN actors ON roles.actor_id = actors.id
                 JOIN actorfullname ON actorfullname.id = actors.id
-                WHERE mg.genre LIKE ' . $strSearch . ' AND actors.full_name LIKE ' . $strSearch2 . ' 
+                WHERE mg.genre LIKE "%' . $strSearch . '%" AND actorfullname.full_name LIKE "%' . $strSearch2 . '%"
+                GROUP BY actorfullname.full_name
                 LIMIT ' . $pageLimit . ' OFFSET ' . $offset;
         break;
     
@@ -75,7 +76,7 @@ switch ($mode) {
                 JOIN directors ON directors.id = md.director_id
                 JOIN directorfullname ON directors.id = directorfullname.id
                 JOIN actorfullname ON actorfullname.id = actors.id
-                WHERE actorfullname.full_name LIKE ' . $strSearch . ' AND directorfullname.full_name LIKE ' . $strSearch2 . '
+                WHERE actorfullname.full_name LIKE "%' . $strSearch . '%" AND directorfullname.full_name LIKE "%' . $strSearch2 . '%"
                 GROUP BY actorfullname.full_name
                 LIMIT ' . $pageLimit . ' OFFSET ' . $offset;
         break;
@@ -85,6 +86,24 @@ switch ($mode) {
 }
 
 $result = $con->query($sql) or die($con->connect_error);
-while ($row = $result->fetch_assoc()) {
-    echo "<li>" . $row['name'] . "</li>";
+
+$finfo = $result->fetch_fields();
+$numFields = count($finfo);
+
+echo "<tr>";
+echo "<th></th>";
+foreach ($finfo as $val) {
+    echo "<th>" .  $val->name . "</th>";
+}
+echo "</tr>";
+$rowCount = 0;
+while ($row = $result->fetch_array()) {
+    echo "<tr>";
+    $rowCount++;
+    echo "<td>" . $offset+$rowCount . "</td>";
+
+    for($i = 0; $i < $numFields; $i++){
+        echo "<td>" . $row[$i] . "</td>";
+    }
+    echo "</tr>";
 };
