@@ -21,17 +21,25 @@
         <div>
             <label for="searchMode" class="mt-2">search by:</label>
             <select name="searchMode" id="searchMode">
-                <option value="name">Movie Name</option>
-                <option value="id">Movie ID</option>
-                <option value="year">Year Shown</option>
-                <option value="ratinglessorequal">Rating Less than or Equal to</option>
-                <option value="ratinggreaterorequal">Rating Greater than or Equal to</option>
-                <option value="directorname">Director Name</option>
-                <option value="directorid">Director ID</option>
+                <!-- Single Table Queries -->
+                <option value="name">Movie by Movie Name</option>
+                <option value="id">Movie by Movie ID</option>
+                <option value="year">Movie by Year Shown</option>
+                <option value="ratinglessorequal">Movie with Rating Less than or Equal to</option>
+                <option value="ratinggreaterorequal">Movie with Rating Greater than or Equal to</option>
+                <!-- Two Table Queries -->
+                <option value="directorname">Movie by Director Name</option>
+                <option value="directorid">Movie by Director ID</option>
+                <!-- Three Table Queries -->
+                <option value="movietoactor">Actors and the roles they played on a movie</option>
+                <option value="actorgenre">No. of times actor played in a genre</option>
+                <!-- Four to Six Table Queries -->
+                <option value="actordirector">No. of times actor played under a director</option>
             </select>
         </div>
         <div class="mx-4 d-flex">
-            <input type="text" name="searchQuery" id="searchQuery" placeholder="search query here...">
+            <input type="text" name="searchQuery" id="searchQuery" placeholder="enter movie name">
+            <input type="text" name="searchQuery2" id="searchQuery2" placeholder="enter movie name" hidden>
             <input type="button" name="searchBtn" id="searchBtn" value="Search">
         </div>
         <div class="px-3 d-flex justify-content-center align-items-center">

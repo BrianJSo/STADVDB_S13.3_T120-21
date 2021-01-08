@@ -1,6 +1,7 @@
 const pageLimit = 20;
 var pageNum = 1;
 var strSearch = "";
+var strSearch2 = "";
 var mode = "";
 var maxPage = 100;
 
@@ -8,6 +9,46 @@ $(document).ready(function () {
   mode = $("#searchMode").val();
   $("#pageNum").text(pageNum);
   search();
+
+  $("#searchMode").change(function () {
+    mode = $("#searchMode").val();
+    if (mode == "actorgenre" || mode == "actordirector") {
+      $("#searchQuery2").attr("hidden", false);
+      if (mode == "actorgenre") {
+        $("#searchQuery").prop("placeholder", "enter genre");
+        $("#searchQuery2").prop("placeholder", "enter actor name");
+      } else {
+        $("#searchQuery").prop("placeholder", "enter actor name");
+        $("#searchQuery2").prop("placeholder", "enter director name");
+      }
+    } else {
+      $("#searchQuery2").attr("hidden", true);
+      switch (mode) {
+        case "name":
+          $("#searchQuery").prop("placeholder", "enter movie name");
+          break;
+        case "id":
+          $("#searchQuery").prop("placeholder", "enter movie id");
+          break;
+        case "year":
+          $("#searchQuery").prop("placeholder", "enter movie year");
+          break;
+        case "ratinglessorequal":
+        case "ratinggreaterorequal":
+          $("#searchQuery").prop("placeholder", "enter rating");
+          break;
+        case "directorname":
+          $("#searchQuery").prop("placeholder", "enter director name");
+          break;
+        case "directorid":
+          $("#searchQuery").prop("placeholder", "enter director id");
+          break;
+        case "movietoactor":
+          $("#searchQuery").prop("placeholder", "enter movie name");
+          break;
+      }
+    }
+  });
 
   $("#searchBtn").on("click", function () {
     pageNum = 1;
@@ -38,7 +79,12 @@ function search() {
 
   $.get(
     "search.php",
-    { mode: mode, strSearch: strSearch, pageNum: pageNum },
+    {
+      mode: mode,
+      strSearch: strSearch,
+      strSearch2: strSearch2,
+      pageNum: pageNum,
+    },
     function (data) {
       $("#results").append(data);
     }
