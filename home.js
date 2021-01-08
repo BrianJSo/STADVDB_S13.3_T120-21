@@ -56,6 +56,7 @@ $(document).ready(function () {
     pageNum = 1;
     mode = $("#searchMode").val();
     strSearch = $("#searchQuery").val();
+    strSearch2 = $("#searchQuery2").val();
     search();
   });
 
