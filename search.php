@@ -84,7 +84,7 @@ switch ($mode) {
     default:
         $sql = 'SELECT name FROM movies';
 }
-
+echo "no results found";
 $result = $con->query($sql) or die($con->connect_error);
 
 $finfo = $result->fetch_fields();
@@ -100,7 +100,7 @@ $rowCount = 0;
 while ($row = $result->fetch_array()) {
     echo "<tr>";
     $rowCount++;
-    echo "<td>" . $offset+$rowCount . "</td>";
+    echo "<td>" . ($offset+$rowCount) . "</td>";
 
     for($i = 0; $i < $numFields; $i++){
         echo "<td>" . $row[$i] . "</td>";
