@@ -87,7 +87,7 @@ function search() {
   curQuery2 = strSearch2;
 
   t1 = new Date();
-  $.get(
+  $.post(
     "search.php",
     {
       mode: mode,
