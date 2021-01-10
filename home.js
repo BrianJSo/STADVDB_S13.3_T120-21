@@ -86,6 +86,7 @@ function search() {
   curQuery = strSearch;
   curQuery2 = strSearch2;
 
+  t1 = new Date();
   $.get(
     "search.php",
     {
@@ -106,6 +107,10 @@ function search() {
           curQuery2
       );
       $("#results").append(data);
+      t2 = new Date();
+      $("#resultsCaption").append(
+        "<br/>Finished in " + (t2 - t1) / 1000 + " seconds."
+      );
     }
   );
 }
