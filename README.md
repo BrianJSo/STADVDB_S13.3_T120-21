@@ -15,8 +15,10 @@ This web application is deployed to Infinity Free and can be accessed using this
 3. Replace **xampp\phpMyAdmin\libraries\config.default.php** with the **config.default.php** found in the project folder.
 4. Replace **xampp\php\php.ini** with the **php.ini** found in the project folder.
 ### Setting up the database
-1. Go to https://localhost/phpmyadmin/index.php 
-2. Open the **Import** tab and choose the **imdb_ijs.sql** file located in the project folder
+1. Download **imdb_ijs.sql** from this [link](https://drive.google.com/file/d/1JFIYRWaud0eVTvEXnfbNW6ydoun5k74m/view?usp=sharing)
+2. Go to https://localhost/phpmyadmin/index.php 
+3. Open the **Import** tab and choose the **imdb_ijs.sql** file
+4. Name the database as **imdb_ijs**
 ### Optimizing the database
 1. After creating the **imdb_ijs** database, select it and open the **SQL tab**
 2. Copy and paste the contents from **optimization.sql** and click **Go**
